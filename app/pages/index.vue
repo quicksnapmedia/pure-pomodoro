@@ -1,22 +1,23 @@
 <template>
-	<header>
-		<span class="logo-placeholder"></span>
-		<span class="placeholder-title">PurePomodoro</span>
-	</header>
-  <p class="time">11:11</p>
-  <div class="timer-controls">
-  	<button>Reset</button>
-  	<button>Play</button>
-  </div>
+  <header>
+    <span class="logo-placeholder"></span>
+    <span class="placeholder-title">PurePomodoro</span>
+  </header>
+
+  <Timer />
 
   <div>
-  	<span class="feature-title">Sessions Completed</span>
-  	<p class="feature-text">0/4</p>
+    <span class="feature-title">Sessions Completed</span>
+    <p class="feature-text">0/4</p>
   </div>
   <footer>
-  <ul>
-    <li><NuxtLink to="/settings">Settings</NuxtLink></li>
-    <li><a href="mailto:support@quicksnapmedia.com">Feedback</a></li>
-  </ul>
+    <ul>
+      <li>
+        <PomoLink to="/settings">Settings</PomoLink>
+      </li>
+      <li>
+        <PomoLink to="mailto:support@quicksnapmedia.com">Feedback</PomoLink>
+      </li>
+    </ul>
   </footer>
 </template>

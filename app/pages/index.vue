@@ -1,14 +1,12 @@
 <template>
   <header>
-    <span class="logo-placeholder"></span>
-    <span class="placeholder-title">PurePomodoro</span>
+    <Logo variant="full"/>
   </header>
 
   <Timer />
 
   <div>
-    <span class="feature-title">Sessions Completed</span>
-    <p class="feature-text">0/4</p>
+    <FeatureProgress title="Sessions Completed" progress-text="0/4"/>
   </div>
   <footer>
     <ul>

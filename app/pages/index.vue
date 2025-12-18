@@ -1,7 +1,3 @@
-<style lang="scss">
-@use "~/assets/scss/pages/home.scss";
-</style>
-
 <template>
   <div class="home">
     <header id="home-header">

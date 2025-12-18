@@ -15,6 +15,10 @@
 
 // 4. Components
 @use 'components/button';
+@use 'components/timer';
 
-// 5. Themes
+// 5. Pages
+@use 'pages/home';
+
+// 6. Themes
 @use 'themes/default';

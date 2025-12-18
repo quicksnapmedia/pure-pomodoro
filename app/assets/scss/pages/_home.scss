@@ -8,8 +8,12 @@
     min-height: 100vh;
 }
 
-main {
+.home main {
+    display: block flex;
+    flex-direction: column;
     flex: 1;
+    justify-content: center;
+    align-items: center;
 }
 
 #home-header {

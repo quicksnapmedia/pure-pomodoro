@@ -4,7 +4,7 @@
 
 <template>
   <div class="home">
-    <header>
+    <header id="home-header">
       <Logo variant="full" />
     </header>
 

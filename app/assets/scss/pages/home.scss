@@ -12,6 +12,17 @@ main {
     flex: 1;
 }
 
+#home-header {
+    padding-top: 2rem;
+    padding-right: 1rem;
+    padding-bottom: 2rem;
+    padding-left: 1rem;
+}
+
+#home-footer {
+    padding: 1rem;
+}
+
 #home-footer ul {
     display: block flex;
     flex-direction: row;

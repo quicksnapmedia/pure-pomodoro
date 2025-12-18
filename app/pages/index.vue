@@ -1,13 +1,15 @@
+<style lang="scss">
+@use "~/assets/scss/pages/home.scss";
+</style>
+
 <template>
   <header>
     <Logo variant="full"/>
   </header>
 
   <Timer />
-
-  <div>
-    <FeatureProgress title="Sessions Completed" progress-text="0/4"/>
-  </div>
+  <FeatureProgress title="Sessions Completed" progress-text="0/4"/>
+  
   <footer>
     <ul>
       <li>

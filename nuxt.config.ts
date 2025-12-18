@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-   app: {
+  app: {
     head: {
       htmlAttrs: {
         lang: 'en',
@@ -10,6 +10,7 @@ export default defineNuxtConfig({
       ],
     },
   },
+  css: ['~/assets/scss/index.scss'],
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true }
 })

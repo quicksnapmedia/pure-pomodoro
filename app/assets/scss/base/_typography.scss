@@ -3,7 +3,7 @@
 /**
  * Basic typography style for copy text
  */
-body {
+:root {
   color: abstracts.$text-color;
   font: normal 125% / 1.4 abstracts.$text-font-stack;
 }

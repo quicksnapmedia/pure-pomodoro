@@ -18,13 +18,13 @@ $code-font-stack: 'Courier New', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono',
 
 
 
-/// Copy text color
+/// Copy text color (Light Theme)
 /// @type Color
-$text-color: rgb(34, 34, 34) !default;
+$text-color-light: rgb(0, 0, 0) !default;
 
-/// Main brand color
+/// Copy text color (Dark Theme)
 /// @type Color
-$brand-color: rgb(229, 0, 80) !default;
+$text-color-dark: rgb(255, 255, 255);
 
 /// Light grey
 /// @type Color
@@ -39,14 +39,18 @@ $mid-grey: rgb(153, 153, 153) !default;
 $dark-grey: rgb(68, 68, 68) !default;
 
 
+/// App Background Color (Light Theme)
+/// @type Color
+$app-background-color-light: rgb(253, 247, 237);
 
+/// App Background Color (Dark Theme)
+/// @type Color
+$app-background-color-dark: rgb(0, 0, 0);
 
 
 /// Container's maximum width
 /// @type Length
 $max-width: 1180px !default;
-
-
 
 
 

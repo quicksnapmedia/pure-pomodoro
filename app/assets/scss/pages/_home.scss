@@ -17,10 +17,10 @@
 }
 
 #home-header {
-    padding-top: 2rem;
-    padding-right: 1rem;
-    padding-bottom: 2rem;
-    padding-left: 1rem;
+    padding-top: 2em;
+    padding-right: 1em;
+    padding-bottom: 2em;
+    padding-left: 1em;
 }
 
 #home-footer {
@@ -29,6 +29,14 @@
 
 #home-footer ul {
     display: block flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 1rem
+}
+
+@media (min-width: 50rem) {
+    #home-footer ul {
+        flex-direction: row;
+        gap: 0;
+        justify-content: space-between;
+    }
 }

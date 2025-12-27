@@ -4,6 +4,9 @@
 // This file contains styles that are specific to the home page.
 // -----------------------------------------------------------------------------
 
+@use "sass:map";
+@use '../abstracts';
+
 :root {
     --home-header-padding-vertical: 2em;
     --home-header-padding-horizontal: 1em;
@@ -42,7 +45,7 @@
     gap: var(--home-footer-list-item-spacing);
 }
 
-@media (min-width: 50rem) {
+@media (min-width: map.get(abstracts.$breakpoints, 'medium')) {
     #home-footer ul {
         flex-direction: row;
         gap: 0;

@@ -6,5 +6,5 @@
 :root {
   color: light-dark(abstracts.$text-color-light, abstracts.$text-color-dark);
   font: normal 100% / 1.4 abstracts.$text-font-stack;
-  font-variation-settings: "opsz" 14;
+  font-variation-settings: "opsz" var(--font-optical-size);
 }

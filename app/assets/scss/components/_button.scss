@@ -1,17 +1,23 @@
 // -----------------------------------------------------------------------------
 // This file contains all styles related to the button component.
 // -----------------------------------------------------------------------------
+
+$pomo-button-border-width: 0.0625em;
+$pomo-button-border-radius: 0.75em;
+$pomo-button-vertical-padding: 0.5em;
+$pomo-button-horiztonal-padding: 1em;
+
 .pomo-button {
 	display: block flex;
 	align-items: center;
 	justify-content: center;
 	text-align: center;
-	border-width: 0.0625em;
-	border-radius: 0.75em;
-	padding-top: 0.5em;
-	padding-right: 1em;
-	padding-bottom: 0.5em;
-	padding-left: 1em;
+	border-width: $pomo-button-border-width;
+	border-radius: $pomo-button-border-radius;
+	padding-top: $pomo-button-vertical-padding;
+	padding-right: $pomo-button-horiztonal-padding;
+	padding-bottom: $pomo-button-vertical-padding;
+	padding-left: $pomo-button-horiztonal-padding;
 }
 
 .pomo-button:hover {

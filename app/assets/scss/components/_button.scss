@@ -7,8 +7,8 @@
 :root {
 	--pomo-button-border-width: 0.0625em;
 	--pomo-button-border-radius: 0.75em;
-	--pomo-button-vertical-padding: 0.5em;
-	--pomo-button-horiztonal-padding: 1em;
+	--pomo-button-padding-vertical: 0.5em;
+	--pomo-button-padding-horiztonal: 1em;
 }
 
 .pomo-button {
@@ -18,10 +18,10 @@
 	text-align: center;
 	border-width: var(--pomo-button-border-width);
 	border-radius: var(--pomo-button-border-radius);
-	padding-top: var(--pomo-button-vertical-padding);
-	padding-right: var(--pomo-button-horiztonal-padding);
-	padding-bottom: var(--pomo-button-vertical-padding);
-	padding-left: var(--pomo-button-horiztonal-padding);
+	padding-top: var(--pomo-button-padding-vertical);
+	padding-right: var(--pomo-button-padding-horiztonal);
+	padding-bottom: var(--pomo-button-padding-vertical);
+	padding-left: var(--pomo-button-padding-horiztonal);
 }
 
 .pomo-button:hover {

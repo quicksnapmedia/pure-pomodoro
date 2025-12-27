@@ -4,6 +4,13 @@
 // This file contains styles that are specific to the home page.
 // -----------------------------------------------------------------------------
 
+:root {
+    --home-header-padding-vertical: 2em;
+    --home-header-padding-horizontal: 1em;
+    --home-footer-padding: 1em;
+    --home-footer-list-item-spacing: 1rem;
+}
+
 .home {
     display: block flex;
     flex-direction: column;
@@ -19,20 +26,20 @@
 }
 
 #home-header {
-    padding-top: 2em;
-    padding-right: 1em;
-    padding-bottom: 2em;
-    padding-left: 1em;
+    padding-top: var(--home-header-padding-vertical);
+    padding-right: var(--home-header-padding-horizontal);
+    padding-bottom: var(--home-header-padding-vertical);
+    padding-left: var(--home-header-padding-horizontal);
 }
 
 #home-footer {
-    padding: 1rem;
+    padding: var(--home-footer-padding);
 }
 
 #home-footer ul {
     display: block flex;
     flex-direction: column;
-    gap: 1rem
+    gap: var(--home-footer-list-item-spacing);
 }
 
 @media (min-width: 50rem) {

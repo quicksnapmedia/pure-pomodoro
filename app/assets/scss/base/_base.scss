@@ -37,7 +37,7 @@ html {
  * Styles for body element
  */
 body {
-  background-color: light-dark(abstracts.$app-background-color-light, abstracts.$app-background-color-dark);  
+  background-color: light-dark(var(--app-background-color-light), var(--app-background-color-dark));  
 }
 
 /**

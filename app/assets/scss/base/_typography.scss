@@ -6,7 +6,7 @@
  * Basic typography style for copy text
  */
 :root {
-  color: light-dark(abstracts.$text-color-light, abstracts.$text-color-dark);
-  font: normal 100% / 1.4 abstracts.$text-font-stack;
+  color: light-dark(var(--text-color-light), var(--text-color-dark));
+  font: normal 100% / 1.4 var(--text-font-stack);
   font-variation-settings: "opsz" var(--font-optical-size);
 }

@@ -5,69 +5,9 @@
 // -----------------------------------------------------------------------------
 
 
-
-
-
-/// Regular font family
-/// @type List
-$text-font-stack: 'Inter Variable', 'Open Sans', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
-
-/// Code (monospace) font family
-/// @type List
-$code-font-stack: 'Courier New', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Monaco', monospace !default;
-
-
-
-
-/// Font Weight Medium
-/// @type number
-$font-weight-medium: 500;
-
-/// Font Weight Semi Bold
-/// @type number
-$font-weight-semi-bold: 600;
-
-/// Font Weight Bold
-/// @type number
-$font-weight-bold: 700;
-
-
-
-
-/// Copy text color (Light Theme)
-/// @type Color
-$text-color-light: rgb(0, 0, 0) !default;
-
-/// Copy text color (Dark Theme)
-/// @type Color
-$text-color-dark: rgb(255, 255, 255);
-
-/// Light grey
-/// @type Color
-$light-grey: rgb(237, 237, 237) !default;
-
-/// Medium grey
-/// @type Color
-$mid-grey: rgb(153, 153, 153) !default;
-
-/// Dark grey
-/// @type Color
-$dark-grey: rgb(68, 68, 68) !default;
-
-
-/// App Background Color (Light Theme)
-/// @type Color
-$app-background-color-light: rgb(253, 247, 237);
-
-/// App Background Color (Dark Theme)
-/// @type Color
-$app-background-color-dark: rgb(0, 0, 0);
-
-
 /// Container's maximum width
 /// @type Length
 $max-width: 1180px !default;
-
 
 
 /// Breakpoints map
@@ -80,12 +20,61 @@ $breakpoints: (
 ) !default;
 
 
-
-
-
-
 /// Relative or absolute URL where all assets are served from
 /// @type String
 /// @example scss - When using a CDN
 ///   $base-url: 'https://cdn.example.com/assets/';
 $base-url: '/assets/' !default;
+
+
+:root {
+  /// Regular font family
+  /// @type List
+  --text-font-stack: 'Inter Variable', 'Open Sans', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  
+  /// Code (monospace) font family
+  /// @type List
+  --code-font-stack: 'Courier New', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Monaco', monospace;
+
+  /// Font Weight Medium
+  /// @type number
+  --font-weight-medium: 500;
+
+  /// Font Weight Semi Bold
+  /// @type number
+  --font-weight-semi-bold: 600;
+
+  /// Font Weight Bold
+  /// @type number
+  --font-weight-bold: 700;
+
+
+  /// Copy text color (Light Theme)
+  /// @type Color
+  --text-color-light: rgb(0, 0, 0);
+
+  /// Copy text color (Dark Theme)
+  /// @type Color
+  --text-color-dark: rgb(255, 255, 255);
+
+  /// Light grey
+  /// @type Color
+  --light-grey: rgb(237, 237, 237);
+
+  /// Medium grey
+  /// @type Color
+  --mid-grey: rgb(153, 153, 153);
+
+  /// Dark grey
+  /// @type Color
+  --dark-grey: rgb(68, 68, 68);
+
+
+  /// App Background Color (Light Theme)
+  /// @type Color
+  --app-background-color-light: rgb(253, 247, 237);
+
+  /// App Background Color (Dark Theme)
+  /// @type Color
+  --app-background-color-dark: rgb(0, 0, 0);
+}

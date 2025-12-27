@@ -10,7 +10,7 @@ const { to } = props;
 </script>
 
 <template>
-	<NuxtLink to={to}>
+	<NuxtLink class="pomo-button" to={to}>
 		<slot></slot>
 	</NuxtLink>
 </template>

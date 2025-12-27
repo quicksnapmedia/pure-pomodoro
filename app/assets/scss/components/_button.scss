@@ -1,3 +1,19 @@
 // -----------------------------------------------------------------------------
 // This file contains all styles related to the button component.
 // -----------------------------------------------------------------------------
+.pomo-button {
+	display: block flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	border-width: 0.0625em;
+	border-radius: 0.75em;
+	padding-top: 0.5em;
+	padding-right: 1em;
+	padding-bottom: 0.5em;
+	padding-left: 1em;
+}
+
+.pomo-button:hover {
+	text-decoration: none;
+}

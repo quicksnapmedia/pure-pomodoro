@@ -6,6 +6,7 @@
 
     <main>
       <Timer />
+      <p class="session-type">Work</p>
       <FeatureProgress title="Sessions Completed" progress-text="0/4" />
     </main>
 

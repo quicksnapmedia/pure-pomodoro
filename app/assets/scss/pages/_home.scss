@@ -30,8 +30,13 @@
 }
 
 .home .session-type {
+    margin-top: 0.5rem;
     font-size: var(--home-session-type-font-size);
     font-weight: var(--font-weight-bold);
+}
+
+.home .feature-progress {
+    margin-top: 1.5rem;
 }
 
 #home-header {

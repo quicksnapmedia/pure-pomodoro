@@ -7,11 +7,11 @@ interface Props {
 const { title, progressText } = defineProps<Props>();
 </script>
 <template>
-	<div>
+	<div class="feature-progress">
 		<div class="feature-title">
 			{{ title }}
 		</div>
-		<p class="feature-text">
+		<p class="feature-progress-text">
 			{{ progressText }}
 		</p>
 	</div>

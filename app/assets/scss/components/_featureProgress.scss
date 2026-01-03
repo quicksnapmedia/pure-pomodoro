@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+// -------------------------------------------------------------------------
+// This file contains all styles related to the FeatureProgress component.
+// -------------------------------------------------------------------------
+
+:root {
+	--feature-progress-title-background-color: rgb(0, 0, 0);
+	--feature-progress-title-foreground-color: rgb(255, 255, 255);
+	--feature-progress-title-border-radius: 1.5em;
+	--feature-progress-title-padding-vertical: 0.375em;
+	--feature-progress-title-padding-horiztonal: 0.875em;
+}
+
+.feature-progress {
+	display: block;
+	text-align: center;
+	font-weight: var(--font-weight-bold);
+}
+
+.feature-title {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--feature-progress-title-background-color);
+	color: var(--feature-progress-title-foreground-color);
+	border-radius: var(--feature-progress-title-border-radius);
+	padding-top: var(--feature-progress-title-padding-vertical);
+	padding-right: var(--feature-progress-title-padding-horiztonal);
+	padding-bottom: var(--feature-progress-title-padding-vertical);
+	padding-left: var(--feature-progress-title-padding-horiztonal);
+}
+
+.feature-progress-text {
+	margin-top: 0.5rem;
+}

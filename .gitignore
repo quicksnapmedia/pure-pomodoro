@@ -18,6 +18,7 @@ logs
 .fleet
 .idea
 .agent-memory
+.agent-context
 
 # Local env files
 .env

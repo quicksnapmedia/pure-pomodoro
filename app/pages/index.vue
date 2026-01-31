@@ -1,5 +1,13 @@
 <script setup lang="ts">
 const { currentSessionType, duration, label, setSessionType, SESSION_TYPES } = useSessionType();
+const { progressText, increment, shouldTakeLongBreak } = useSessionCounter(4);
+
+const handleTimerComplete = () => {
+	// Only increment counter for work (pomodoro) sessions
+	if (currentSessionType.value === SESSION_TYPES.POMODORO) {
+		increment();
+	}
+};
 </script>
 
 <template>
@@ -9,7 +17,7 @@ const { currentSessionType, duration, label, setSessionType, SESSION_TYPES } = u
     </header>
 
     <main>
-      <Timer :duration="duration" />
+      <Timer :duration="duration" @complete="handleTimerComplete" />
       <div class="session-type-controls">
         <p class="session-type">{{ label }}</p>
         <div class="session-type-buttons">
@@ -39,7 +47,7 @@ const { currentSessionType, duration, label, setSessionType, SESSION_TYPES } = u
           </button>
         </div>
       </div>
-      <FeatureProgress title="Sessions Completed" progress-text="0/4" />
+      <FeatureProgress title="Sessions Completed" :progress-text="progressText" />
     </main>
 
     <footer id="home-footer">

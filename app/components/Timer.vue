@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, toRef } from 'vue';
+import { computed, toRef, watch } from 'vue';
 
 interface Props {
 	duration?: number;
@@ -9,7 +9,18 @@ const props = withDefaults(defineProps<Props>(), {
 	duration: 1500,
 });
 
+const emit = defineEmits<{
+	complete: [];
+}>();
+
 const { formattedTime, status, start, pause, reset, timeRemaining } = useTimer(toRef(props, 'duration'));
+
+// Emit completion event when timer finishes
+watch(status, (newStatus) => {
+	if (newStatus === 'completed') {
+		emit('complete');
+	}
+});
 
 const handleToggle = () => {
 	if (status.value === 'running') {

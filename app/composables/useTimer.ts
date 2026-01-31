@@ -1,14 +1,21 @@
-import { ref, computed, onUnmounted } from 'vue';
+import { ref, computed, onUnmounted, watch, unref, type Ref } from 'vue';
 import { TimerCore, TIMER_STATUS } from '../../lib/timer-core';
 
 // Re-define the type for use in the composable
 export type TimerStatus = (typeof TIMER_STATUS)[keyof typeof TIMER_STATUS];
 
-export function useTimer(initialDurationSeconds: number = 1500) {
-    const timeRemaining = ref(initialDurationSeconds);
+export function useTimer(initialDurationSeconds: number | Ref<number> = 1500) {
+    const durationRef = typeof initialDurationSeconds === 'number' 
+        ? ref(initialDurationSeconds) 
+        : initialDurationSeconds;
+    
+    // Ensure we always extract the numeric value, not a Ref object
+    const initialDuration = unref(durationRef);
+    
+    const timeRemaining = ref(initialDuration);
     const status = ref<TimerStatus>(TIMER_STATUS.IDLE);
 
-    const timer = new TimerCore(initialDurationSeconds, {
+    const timer = new TimerCore(initialDuration, {
         onTick: (seconds: number) => {
             timeRemaining.value = seconds;
         },
@@ -21,6 +28,16 @@ export function useTimer(initialDurationSeconds: number = 1500) {
         }
     });
 
+    // Watch for duration changes and reset timer if idle
+    watch(durationRef, (newDuration) => {
+        if (status.value === TIMER_STATUS.IDLE) {
+            // Ensure newDuration is a number, not a Ref
+            const durationValue = unref(newDuration);
+            timer.reset(durationValue);
+            timeRemaining.value = durationValue;
+        }
+    });
+
     const formattedTime = computed(() => {
         const mins = Math.floor(timeRemaining.value / 60);
         const secs = timeRemaining.value % 60;
@@ -30,10 +47,10 @@ export function useTimer(initialDurationSeconds: number = 1500) {
     const start = () => timer.start();
     const pause = () => timer.pause();
     const reset = (newDuration?: number) => {
-        timer.reset(newDuration);
-        if (newDuration !== undefined) {
-            timeRemaining.value = newDuration;
-        }
+        // Ensure we always use a number, not a Ref object
+        const durationToUse = newDuration ?? unref(durationRef);
+        timer.reset(durationToUse);
+        timeRemaining.value = durationToUse;
     };
 
     // Cleanup when the component using this composable is unmounted

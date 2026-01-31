@@ -28,9 +28,9 @@ export function useTimer(initialDurationSeconds: number | Ref<number> = 1500) {
         }
     });
 
-    // Watch for duration changes and reset timer if idle
+    // Watch for duration changes and reset timer if idle or completed
     watch(durationRef, (newDuration) => {
-        if (status.value === TIMER_STATUS.IDLE) {
+        if (status.value === TIMER_STATUS.IDLE || status.value === TIMER_STATUS.COMPLETED) {
             // Ensure newDuration is a number, not a Ref
             const durationValue = unref(newDuration);
             timer.reset(durationValue);

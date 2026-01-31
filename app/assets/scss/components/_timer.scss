@@ -4,6 +4,7 @@
     display: block flex;
     flex-direction: column;
     align-items: center;
+    gap: 2em;
 }
 
 .timer .time {
@@ -11,4 +12,43 @@
     font-weight: var(--font-weight-medium);
     line-height: 1;
     text-align: center;
+}
+
+.timer-controls {
+    display: block flex;
+    flex-direction: row;
+    gap: 1em;
+    align-items: center;
+    justify-content: center;
+}
+
+.timer-control {
+    min-width: 6em;
+    cursor: pointer;
+    transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+.timer-control:hover:not(:disabled) {
+    transform: translateY(-0.0625em);
+}
+
+.timer-control:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.timer-control:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.timer-control--start {
+    // Start button specific styles can go here
+}
+
+.timer-control--pause {
+    // Pause button specific styles can go here
+}
+
+.timer-control--reset {
+    // Reset button specific styles can go here
 }

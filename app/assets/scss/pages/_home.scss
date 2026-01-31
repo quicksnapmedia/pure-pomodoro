@@ -10,6 +10,7 @@
 :root {
     --home-header-padding-vertical: 2em;
     --home-header-padding-horizontal: 1em;
+    --home-session-type-font-size: 1.5em;
     --home-footer-padding: 1em;
     --home-footer-list-item-spacing: 1rem;
 }
@@ -26,6 +27,16 @@
     flex: 1;
     justify-content: center;
     align-items: center;
+}
+
+.home .session-type {
+    margin-top: 0.5rem;
+    font-size: var(--home-session-type-font-size);
+    font-weight: var(--font-weight-bold);
+}
+
+.home .feature-progress {
+    margin-top: 1.5rem;
 }
 
 #home-header {

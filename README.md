@@ -73,3 +73,9 @@ bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+## Technical Implementation
+
+- **Target Browsers**: 2024 evergreen browsers (Chrome, Firefox, Safari, Edge).
+- **CSS Standards**: [CSS Snapshot 2024](https://www.w3.org/TR/css-2024/).
+- **Styling**: Sass/CSS features are restricted to those defined in CSS Snapshot 2024.

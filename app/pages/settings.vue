@@ -3,13 +3,15 @@ useHead({
 	title: 'Settings'
 })
 
-// Temporary local state for UI (will be replaced with useSettings in Issue #7)
-const workDuration = ref(25)
-const shortBreakDuration = ref(5)
-const longBreakDuration = ref(15)
-const longBreakFrequency = ref(4)
-const selectedSound = ref('default')
-const selectedTheme = ref('auto')
+// Use settings composable
+const {
+	workDuration,
+	shortBreakDuration,
+	longBreakDuration,
+	longBreakFrequency,
+	sound,
+	theme,
+} = useSettings()
 
 const soundOptions = [
 	{ value: 'default', label: 'Default' },
@@ -130,7 +132,7 @@ const themeOptions = [
 						</label>
 						<select
 							id="sound-selection"
-							v-model="selectedSound"
+							v-model="sound"
 							class="settings-select"
 							aria-describedby="sound-selection-help"
 						>
@@ -158,7 +160,7 @@ const themeOptions = [
 						</label>
 						<select
 							id="theme-selection"
-							v-model="selectedTheme"
+							v-model="theme"
 							class="settings-select"
 							aria-describedby="theme-selection-help"
 						>

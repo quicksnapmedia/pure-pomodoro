@@ -8,13 +8,6 @@ export const SESSION_TYPES = {
 
 export type SessionType = (typeof SESSION_TYPES)[keyof typeof SESSION_TYPES];
 
-// Default durations in seconds
-const DEFAULT_DURATIONS = {
-    [SESSION_TYPES.POMODORO]: 25 * 60,      // 25 minutes
-    [SESSION_TYPES.SHORT_BREAK]: 5 * 60,    // 5 minutes
-    [SESSION_TYPES.LONG_BREAK]: 15 * 60,    // 15 minutes
-} as const;
-
 // Display labels for session types
 const SESSION_LABELS = {
     [SESSION_TYPES.POMODORO]: 'Work',
@@ -24,9 +17,22 @@ const SESSION_LABELS = {
 
 export function useSessionType() {
     const currentSessionType = ref<SessionType>(SESSION_TYPES.POMODORO);
+    
+    // Get settings - useSettings is auto-imported by Nuxt
+    const { workDuration, shortBreakDuration, longBreakDuration } = useSettings();
 
     const duration = computed(() => {
-        return DEFAULT_DURATIONS[currentSessionType.value];
+        // Convert minutes to seconds
+        switch (currentSessionType.value) {
+            case SESSION_TYPES.POMODORO:
+                return workDuration.value * 60;
+            case SESSION_TYPES.SHORT_BREAK:
+                return shortBreakDuration.value * 60;
+            case SESSION_TYPES.LONG_BREAK:
+                return longBreakDuration.value * 60;
+            default:
+                return 25 * 60; // fallback
+        }
     });
 
     const label = computed(() => {

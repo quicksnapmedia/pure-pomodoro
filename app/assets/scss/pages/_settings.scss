@@ -1,0 +1,169 @@
+@charset "UTF-8";
+
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the settings page.
+// -----------------------------------------------------------------------------
+
+@use "sass:map";
+@use '../abstracts';
+
+:root {
+	--settings-header-padding-vertical: 2em;
+	--settings-header-padding-horizontal: 1em;
+	--settings-main-padding: 1em;
+	--settings-main-max-width: 37.5rem;
+	--settings-title-font-size: 2em;
+	--settings-title-margin-bottom: 1.5rem;
+	--settings-section-margin-bottom: 2rem;
+	--settings-section-title-font-size: 1.25em;
+	--settings-section-title-margin-bottom: 1rem;
+	--settings-field-margin-bottom: 1.5rem;
+	--settings-label-font-size: 1em;
+	--settings-label-margin-bottom: 0.5rem;
+	--settings-input-padding-vertical: 0.5em;
+	--settings-input-padding-horizontal: 0.75em;
+	--settings-input-border-width: 0.0625em;
+	--settings-input-border-radius: 0.5em;
+	--settings-input-font-size: 1em;
+	--settings-select-padding-vertical: 0.5em;
+	--settings-select-padding-horizontal: 0.75em;
+	--settings-select-border-width: 0.0625em;
+	--settings-select-border-radius: 0.5em;
+	--settings-select-font-size: 1em;
+	--settings-help-font-size: 0.875em;
+	--settings-help-margin-top: 0.25rem;
+	--settings-back-link-margin-bottom: 1rem;
+	--settings-footer-padding: 1em;
+	--settings-footer-list-item-spacing: 1rem;
+}
+
+.settings {
+	display: block flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.settings-main {
+	flex: 1;
+	padding: var(--settings-main-padding);
+	max-width: var(--settings-main-max-width);
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.settings-title {
+	font-size: var(--settings-title-font-size);
+	font-weight: var(--font-weight-bold);
+	margin-top: 0;
+	margin-bottom: var(--settings-title-margin-bottom);
+}
+
+.settings-form {
+	display: block;
+}
+
+.settings-section {
+	margin-bottom: var(--settings-section-margin-bottom);
+}
+
+.settings-section-title {
+	font-size: var(--settings-section-title-font-size);
+	font-weight: var(--font-weight-semi-bold);
+	margin-top: 0;
+	margin-bottom: var(--settings-section-title-margin-bottom);
+}
+
+.settings-field {
+	margin-bottom: var(--settings-field-margin-bottom);
+}
+
+.settings-label {
+	display: block;
+	font-size: var(--settings-label-font-size);
+	font-weight: var(--font-weight-medium);
+	margin-bottom: var(--settings-label-margin-bottom);
+	color: light-dark(var(--text-color-light), var(--text-color-dark));
+}
+
+.settings-input,
+.settings-select {
+	display: block;
+	width: 100%;
+	padding-top: var(--settings-input-padding-vertical);
+	padding-right: var(--settings-input-padding-horizontal);
+	padding-bottom: var(--settings-input-padding-vertical);
+	padding-left: var(--settings-input-padding-horizontal);
+	border-width: var(--settings-input-border-width);
+	border-style: solid;
+	border-color: light-dark(var(--mid-grey), var(--dark-grey));
+	border-radius: var(--settings-input-border-radius);
+	font-size: var(--settings-input-font-size);
+	font-family: var(--text-font-stack);
+	background-color: light-dark(var(--app-background-color-light), var(--app-background-color-dark));
+	color: light-dark(var(--text-color-light), var(--text-color-dark));
+	transition: border-color 0.2s ease;
+
+	&:focus {
+		outline: none;
+		border-color: light-dark(var(--dark-grey), var(--light-grey));
+	}
+
+	&:hover {
+		border-color: light-dark(var(--dark-grey), var(--light-grey));
+	}
+}
+
+.settings-select {
+	padding-top: var(--settings-select-padding-vertical);
+	padding-right: var(--settings-select-padding-horizontal);
+	padding-bottom: var(--settings-select-padding-vertical);
+	padding-left: var(--settings-select-padding-horizontal);
+	border-width: var(--settings-select-border-width);
+	border-radius: var(--settings-select-border-radius);
+	font-size: var(--settings-select-font-size);
+	cursor: pointer;
+}
+
+.settings-help {
+	font-size: var(--settings-help-font-size);
+	margin-top: var(--settings-help-margin-top);
+	margin-bottom: 0;
+	color: light-dark(var(--mid-grey), var(--mid-grey));
+}
+
+#settings-header {
+	padding-top: var(--settings-header-padding-vertical);
+	padding-right: var(--settings-header-padding-horizontal);
+	padding-bottom: var(--settings-header-padding-vertical);
+	padding-left: var(--settings-header-padding-horizontal);
+	display: block flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.settings-back-link {
+	margin-bottom: var(--settings-back-link-margin-bottom);
+}
+
+#settings-footer {
+	padding: var(--settings-footer-padding);
+}
+
+#settings-footer ul {
+	display: block flex;
+	flex-direction: column;
+	gap: var(--settings-footer-list-item-spacing);
+}
+
+@media (min-width: map.get(abstracts.$breakpoints, 'medium')) {
+	.settings-main {
+		padding: 2em;
+	}
+
+	#settings-footer ul {
+		flex-direction: row;
+		gap: 0;
+		justify-content: space-between;
+	}
+}

@@ -45,6 +45,7 @@ A clean, modern Pomodoro timer application built with Nuxt 4 and Vue 3.
    - Sound selection and theme selector dropdowns
    - Responsive layout with accessible form inputs
    - Light/dark theme support using CSS `light-dark()` function
+   - PR #31 merged to main
 
 ### Current Phase: Phase 3 - Settings & Configuration
 

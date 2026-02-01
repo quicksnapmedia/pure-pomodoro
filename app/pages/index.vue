@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const { currentSessionType, duration, label, setSessionType, switchToNextSessionType, switchToLongBreak, SESSION_TYPES } = useSessionType();
-const { progressText, increment, shouldTakeLongBreak, reset } = useSessionCounter(4);
+const { longBreakFrequency } = useSettings();
+const { progressText, increment, shouldTakeLongBreak, reset } = useSessionCounter(longBreakFrequency);
 
 const handleTimerComplete = () => {
 	if (currentSessionType.value === SESSION_TYPES.POMODORO) {

@@ -119,19 +119,19 @@ Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduct
 
 ## Setup
 
-This project uses **Bun** as the main and recommended JavaScript runtime. Make sure to install dependencies:
+Make sure to install dependencies:
 
 ```bash
-# bun (Recommended - Main Runtime)
+# bun (Recommended)
 bun install
 
-# npm (Alternative)
+# npm
 npm install
 
-# pnpm (Alternative)
+# pnpm
 pnpm install
 
-# yarn (Alternative)
+# yarn
 yarn install
 ```
 
@@ -140,17 +140,17 @@ yarn install
 Start the development server on `http://localhost:3000`:
 
 ```bash
-# bun (Recommended - Main Runtime)
-bun run dev
-
-# npm (Alternative)
+# npm
 npm run dev
 
-# pnpm (Alternative)
+# pnpm
 pnpm dev
 
-# yarn (Alternative)
+# yarn
 yarn dev
+
+# bun
+bun run dev
 ```
 
 ## Production
@@ -158,33 +158,33 @@ yarn dev
 Build the application for production:
 
 ```bash
-# bun (Recommended - Main Runtime)
-bun run build
-
-# npm (Alternative)
+# npm
 npm run build
 
-# pnpm (Alternative)
+# pnpm
 pnpm build
 
-# yarn (Alternative)
+# yarn
 yarn build
+
+# bun
+bun run build
 ```
 
 Locally preview production build:
 
 ```bash
-# bun (Recommended - Main Runtime)
-bun run preview
-
-# npm (Alternative)
+# npm
 npm run preview
 
-# pnpm (Alternative)
+# pnpm
 pnpm preview
 
-# yarn (Alternative)
+# yarn
 yarn preview
+
+# bun
+bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

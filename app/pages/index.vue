@@ -1,11 +1,39 @@
 <script setup lang="ts">
-const { currentSessionType, duration, label, setSessionType, SESSION_TYPES } = useSessionType();
+import { ref, nextTick, type ComponentPublicInstance } from 'vue';
+
+const { currentSessionType, duration, label, setSessionType, switchToNextSessionType, switchToLongBreak, SESSION_TYPES } = useSessionType();
 const { progressText, increment, shouldTakeLongBreak } = useSessionCounter(4);
 
-const handleTimerComplete = () => {
-	// Only increment counter for work (pomodoro) sessions
+interface TimerInstance {
+	reset: (newDuration?: number) => void;
+	start: () => void;
+	pause: () => void;
+}
+
+const timerRef = ref<ComponentPublicInstance & TimerInstance | null>(null);
+
+const handleTimerComplete = async () => {
 	if (currentSessionType.value === SESSION_TYPES.POMODORO) {
+		// Pomodoro completed - increment counter and switch to break
 		increment();
+		
+		// Determine break type based on session count
+		if (shouldTakeLongBreak.value) {
+			switchToLongBreak();
+		} else {
+			switchToNextSessionType();
+		}
+	} else {
+		// Break completed - switch back to pomodoro
+		setSessionType(SESSION_TYPES.POMODORO);
+	}
+	
+	// Wait for next tick to ensure duration has updated, then reset and start timer
+	await nextTick();
+	if (timerRef.value) {
+		// Reset with new duration to ensure it's set correctly, then start
+		timerRef.value.reset(duration.value);
+		timerRef.value.start();
 	}
 };
 </script>
@@ -17,7 +45,7 @@ const handleTimerComplete = () => {
     </header>
 
     <main>
-      <Timer :duration="duration" @complete="handleTimerComplete" />
+      <Timer ref="timerRef" :duration="duration" @complete="handleTimerComplete" />
       <div class="session-type-controls">
         <p class="session-type">{{ label }}</p>
         <div class="session-type-buttons">

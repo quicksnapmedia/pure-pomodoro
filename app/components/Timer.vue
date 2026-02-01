@@ -41,6 +41,13 @@ const canStart = computed(() => {
 const canPause = computed(() => {
 	return status.value === 'running';
 });
+
+// Expose methods for parent component to control timer
+defineExpose({
+	start,
+	pause,
+	reset,
+});
 </script>
 
 <template>

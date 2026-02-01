@@ -1,18 +1,8 @@
 <script setup lang="ts">
-import { ref, nextTick, type ComponentPublicInstance } from 'vue';
-
 const { currentSessionType, duration, label, setSessionType, switchToNextSessionType, switchToLongBreak, SESSION_TYPES } = useSessionType();
 const { progressText, increment, shouldTakeLongBreak } = useSessionCounter(4);
 
-interface TimerInstance {
-	reset: (newDuration?: number) => void;
-	start: () => void;
-	pause: () => void;
-}
-
-const timerRef = ref<ComponentPublicInstance & TimerInstance | null>(null);
-
-const handleTimerComplete = async () => {
+const handleTimerComplete = () => {
 	if (currentSessionType.value === SESSION_TYPES.POMODORO) {
 		// Pomodoro completed - check if we should take long break BEFORE incrementing
 		// (because increment resets to 0 after 4, we need to check the state before)
@@ -22,6 +12,7 @@ const handleTimerComplete = async () => {
 		increment();
 		
 		// Determine break type based on session count
+		// User will manually start the next session
 		if (willBeLongBreak) {
 			switchToLongBreak();
 		} else {
@@ -29,18 +20,8 @@ const handleTimerComplete = async () => {
 		}
 	} else {
 		// Break completed - switch back to pomodoro
+		// User will manually start the next session
 		setSessionType(SESSION_TYPES.POMODORO);
-	}
-	
-	// Wait for next tick to ensure duration has updated
-	// The useTimer composable will automatically reset when duration changes (in COMPLETED state)
-	// We just need to start the timer after the reset
-	await nextTick();
-	// Small delay to ensure watcher has processed duration change
-	await new Promise(resolve => setTimeout(resolve, 100));
-	if (timerRef.value) {
-		// Start the timer (reset already happened via watcher)
-		timerRef.value.start();
 	}
 };
 </script>
@@ -52,7 +33,7 @@ const handleTimerComplete = async () => {
     </header>
 
     <main>
-      <Timer ref="timerRef" :duration="duration" @complete="handleTimerComplete" />
+      <Timer :duration="duration" @complete="handleTimerComplete" />
       <div class="session-type-controls">
         <p class="session-type">{{ label }}</p>
         <div class="session-type-buttons">

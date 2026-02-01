@@ -1,11 +1,31 @@
 <script setup lang="ts">
-const { currentSessionType, duration, label, setSessionType, SESSION_TYPES } = useSessionType();
-const { progressText, increment, shouldTakeLongBreak } = useSessionCounter(4);
+const { currentSessionType, duration, label, setSessionType, switchToNextSessionType, switchToLongBreak, SESSION_TYPES } = useSessionType();
+const { progressText, increment, shouldTakeLongBreak, reset } = useSessionCounter(4);
 
 const handleTimerComplete = () => {
-	// Only increment counter for work (pomodoro) sessions
 	if (currentSessionType.value === SESSION_TYPES.POMODORO) {
+		// Pomodoro completed - check if we should take long break BEFORE incrementing
+		const willBeLongBreak = shouldTakeLongBreak.value;
+		
+		// Increment counter (will show 4/4 during long break)
 		increment();
+		
+		// Determine break type based on session count
+		// User will manually start the next session
+		if (willBeLongBreak) {
+			switchToLongBreak();
+		} else {
+			switchToNextSessionType();
+		}
+	} else {
+		// Break completed
+		if (currentSessionType.value === SESSION_TYPES.LONG_BREAK) {
+			// Long break completed - reset counter to 0/4
+			reset();
+		}
+		// Switch back to pomodoro
+		// User will manually start the next session
+		setSessionType(SESSION_TYPES.POMODORO);
 	}
 };
 </script>

@@ -14,11 +14,15 @@ const timerRef = ref<ComponentPublicInstance & TimerInstance | null>(null);
 
 const handleTimerComplete = async () => {
 	if (currentSessionType.value === SESSION_TYPES.POMODORO) {
-		// Pomodoro completed - increment counter and switch to break
+		// Pomodoro completed - check if we should take long break BEFORE incrementing
+		// (because increment resets to 0 after 4, we need to check the state before)
+		const willBeLongBreak = shouldTakeLongBreak.value;
+		
+		// Increment counter
 		increment();
 		
 		// Determine break type based on session count
-		if (shouldTakeLongBreak.value) {
+		if (willBeLongBreak) {
 			switchToLongBreak();
 		} else {
 			switchToNextSessionType();
@@ -28,11 +32,14 @@ const handleTimerComplete = async () => {
 		setSessionType(SESSION_TYPES.POMODORO);
 	}
 	
-	// Wait for next tick to ensure duration has updated, then reset and start timer
+	// Wait for next tick to ensure duration has updated
+	// The useTimer composable will automatically reset when duration changes (in COMPLETED state)
+	// We just need to start the timer after the reset
 	await nextTick();
+	// Small delay to ensure watcher has processed duration change
+	await new Promise(resolve => setTimeout(resolve, 100));
 	if (timerRef.value) {
-		// Reset with new duration to ensure it's set correctly, then start
-		timerRef.value.reset(duration.value);
+		// Start the timer (reset already happened via watcher)
 		timerRef.value.start();
 	}
 };

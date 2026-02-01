@@ -6,6 +6,7 @@ const STORAGE_KEYS = {
 	TIMER_STATE: 'pomodoro-timer-state',
 	SESSION_TYPE: 'pomodoro-session-type',
 	SESSION_COUNTER: 'pomodoro-session-counter',
+	SESSION_HISTORY: 'pomodoro-session-history',
 } as const;
 
 export interface TimerState {
@@ -170,5 +171,69 @@ export function clearSessionCounter(): void {
 		localStorage.removeItem(STORAGE_KEYS.SESSION_COUNTER);
 	} catch (error) {
 		console.warn('Failed to clear session counter:', error);
+	}
+}
+
+/**
+ * Session history entry interface
+ */
+export interface SessionHistoryEntry {
+	id: string; // Unique identifier for the session
+	type: string; // Session type: 'pomodoro', 'short-break', 'long-break'
+	duration: number; // Duration in seconds
+	completedAt: number; // Unix timestamp when session was completed
+}
+
+/**
+ * Save session history to localStorage
+ */
+export function saveSessionHistory(history: SessionHistoryEntry[]): void {
+	if (!isStorageAvailable()) return;
+	
+	try {
+		localStorage.setItem(STORAGE_KEYS.SESSION_HISTORY, JSON.stringify(history));
+	} catch (error) {
+		console.warn('Failed to save session history:', error);
+	}
+}
+
+/**
+ * Load session history from localStorage
+ */
+export function loadSessionHistory(): SessionHistoryEntry[] {
+	if (!isStorageAvailable()) return [];
+	
+	try {
+		const stored = localStorage.getItem(STORAGE_KEYS.SESSION_HISTORY);
+		if (!stored) return [];
+		
+		const history = JSON.parse(stored) as SessionHistoryEntry[];
+		
+		// Validate that it's an array
+		if (!Array.isArray(history)) return [];
+		
+		// Validate each entry structure
+		return history.filter(entry =>
+			typeof entry.id === 'string' &&
+			typeof entry.type === 'string' &&
+			typeof entry.duration === 'number' &&
+			typeof entry.completedAt === 'number'
+		);
+	} catch (error) {
+		console.warn('Failed to load session history:', error);
+		return [];
+	}
+}
+
+/**
+ * Clear session history from localStorage
+ */
+export function clearSessionHistory(): void {
+	if (!isStorageAvailable()) return;
+	
+	try {
+		localStorage.removeItem(STORAGE_KEYS.SESSION_HISTORY);
+	} catch (error) {
+		console.warn('Failed to clear session history:', error);
 	}
 }

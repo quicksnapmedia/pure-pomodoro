@@ -1,4 +1,5 @@
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
+import { saveSessionType, loadSessionType } from '../utils/storage';
 
 export const SESSION_TYPES = {
     POMODORO: 'pomodoro',
@@ -16,7 +17,18 @@ const SESSION_LABELS = {
 } as const;
 
 export function useSessionType() {
-    const currentSessionType = ref<SessionType>(SESSION_TYPES.POMODORO);
+    // Try to restore session type from localStorage
+    const savedSessionType = loadSessionType();
+    const initialSessionType = (savedSessionType && Object.values(SESSION_TYPES).includes(savedSessionType as SessionType))
+        ? (savedSessionType as SessionType)
+        : SESSION_TYPES.POMODORO;
+    
+    const currentSessionType = ref<SessionType>(initialSessionType);
+    
+    // Save session type whenever it changes
+    watch(currentSessionType, (newType) => {
+        saveSessionType(newType);
+    });
     
     // Get settings - useSettings is auto-imported by Nuxt
     const { workDuration, shortBreakDuration, longBreakDuration } = useSettings();

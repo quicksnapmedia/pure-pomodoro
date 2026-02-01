@@ -122,6 +122,9 @@ Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduct
 Make sure to install dependencies:
 
 ```bash
+# bun (Recommended)
+bun install
+
 # npm
 npm install
 
@@ -130,9 +133,6 @@ pnpm install
 
 # yarn
 yarn install
-
-# bun
-bun install
 ```
 
 ## Development Server

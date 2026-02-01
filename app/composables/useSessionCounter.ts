@@ -1,12 +1,23 @@
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import type { Ref } from 'vue';
+import { saveSessionCounter, loadSessionCounter } from '../utils/storage';
 
 /**
  * Composable for tracking completed work sessions
  * Tracks progress toward long break (e.g., 0/4 sessions completed)
  */
 export function useSessionCounter(longBreakFrequency: number | Ref<number> = 4) {
-    const completedSessions = ref(0);
+    // Try to restore session counter from localStorage
+    const savedCount = loadSessionCounter();
+    const initialCount = savedCount !== null ? savedCount : 0;
+    
+    const completedSessions = ref(initialCount);
+    
+    // Save session counter whenever it changes
+    watch(completedSessions, (newCount) => {
+        saveSessionCounter(newCount);
+    });
+    
     const frequencyRef = typeof longBreakFrequency === 'number' 
         ? ref(longBreakFrequency) 
         : longBreakFrequency;
@@ -24,6 +35,7 @@ export function useSessionCounter(longBreakFrequency: number | Ref<number> = 4) 
      */
     const reset = () => {
         completedSessions.value = 0;
+        // Counter is automatically saved via watch
     };
 
     /**

@@ -17,6 +17,7 @@ export function useSessionCounter(longBreakFrequency: number | Ref<number> = 4) 
     watch(completedSessions, (newCount) => {
         saveSessionCounter(newCount);
     });
+    
     const frequencyRef = typeof longBreakFrequency === 'number' 
         ? ref(longBreakFrequency) 
         : longBreakFrequency;

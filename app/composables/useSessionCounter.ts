@@ -13,14 +13,10 @@ export function useSessionCounter(longBreakFrequency: number | Ref<number> = 4) 
 
     /**
      * Increment the session counter when a work session completes
+     * Counter will show 4/4 during long break, then reset after long break completes
      */
     const increment = () => {
         completedSessions.value++;
-        
-        // Reset counter if we've reached the long break frequency
-        if (completedSessions.value >= frequencyRef.value) {
-            completedSessions.value = 0;
-        }
     };
 
     /**

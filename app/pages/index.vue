@@ -1,14 +1,13 @@
 <script setup lang="ts">
 const { currentSessionType, duration, label, setSessionType, switchToNextSessionType, switchToLongBreak, SESSION_TYPES } = useSessionType();
-const { progressText, increment, shouldTakeLongBreak } = useSessionCounter(4);
+const { progressText, increment, shouldTakeLongBreak, reset } = useSessionCounter(4);
 
 const handleTimerComplete = () => {
 	if (currentSessionType.value === SESSION_TYPES.POMODORO) {
 		// Pomodoro completed - check if we should take long break BEFORE incrementing
-		// (because increment resets to 0 after 4, we need to check the state before)
 		const willBeLongBreak = shouldTakeLongBreak.value;
 		
-		// Increment counter
+		// Increment counter (will show 4/4 during long break)
 		increment();
 		
 		// Determine break type based on session count
@@ -19,7 +18,12 @@ const handleTimerComplete = () => {
 			switchToNextSessionType();
 		}
 	} else {
-		// Break completed - switch back to pomodoro
+		// Break completed
+		if (currentSessionType.value === SESSION_TYPES.LONG_BREAK) {
+			// Long break completed - reset counter to 0/4
+			reset();
+		}
+		// Switch back to pomodoro
 		// User will manually start the next session
 		setSessionType(SESSION_TYPES.POMODORO);
 	}
